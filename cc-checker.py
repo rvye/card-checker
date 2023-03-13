@@ -35,14 +35,13 @@ def getCardNumber():
         added = added + int(cardnumarray[i])    
             
     added = added + multiplied
-    print(added)
+
     # Checking if the second digit of cardnumadded is a 0
     if [int(x) for x in str(added)][-1] :
         print("INVALID.")
 
         return False
 
-    print(cardnum)
     # Checking if it's a VISA, AMEX, or MASTERCARD
     if cardnum[0] == 4:
         print("VISA")
