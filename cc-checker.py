@@ -3,7 +3,7 @@ def getCardNumber():
 
     # cardnum =  4003600000000014
 
-    cardnum = 5332810078507555
+    
 
     # Puts the card number into an array
     cardnum = [int(x) for x in str(cardnum)]
