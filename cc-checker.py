@@ -26,43 +26,37 @@ def getCardNumber():
     for i in range(len(cardmultipliedarray)):
         cardmultiplieddigits += str(cardmultipliedarray[i])
 
-    cardmultiplied = 0
+    multiplied = 0
     for i in range(len(cardmultiplieddigits)):
-        cardmultiplied += int(cardmultiplieddigits[i])
-
+        multiplied = multiplied + int(cardmultiplieddigits[i])
     # Getting the numbers from cardnumarray & adding cardmultipled with cardnum
-    cardnumadded = 0
-    for i in range(len(cardmultipliedarray)):
-        cardnumadded += int(cardnumarray[i])    
-    cardnumadded = cardnumadded + cardmultiplied
-
-    print(cardnumarray)        
-    print(cardnumadded)
-    print(cardnum)
-    print(cardmultiplied)
-    print(cardmultiplieddigits)
-    print(cardmultipliedarray)
-        
+    added = 0
+    for i in range(len(cardnumarray)):
+        added = added + int(cardnumarray[i])    
+            
+    added = added + multiplied
+    print(added)
     # Checking if the second digit of cardnumadded is a 0
-    if [int(x) for x in str(cardnumadded)][1] != 0 or len(str(cardnumadded)) == 2 or 4 or 6:
+    if [int(x) for x in str(added)][-1] :
         print("INVALID.")
 
         return False
 
+    print(cardnum)
     # Checking if it's a VISA, AMEX, or MASTERCARD
     if cardnum[0] == 4:
         print("VISA")
             
         return True
-    elif cardnum[0] == 3 and cardnum[1] == 4 or 7:
+    elif cardnum[0] == 3 and cardnum[1] == 4 or cardnum[1] == 7:
         print("AMEX")
             
         return True
-    elif cardnum[0] == 5 and cardnum[1] == 1 or 2 or 3 or 4 or 5:
+    elif cardnum[0] == 5 and cardnum[1] > 0 and cardnum[1] < 6:
         print("MASTERCARD")
             
         return True
-
+    
 # error handling
 try:
     getCardNumber()
