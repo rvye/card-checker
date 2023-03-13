@@ -1,38 +1,72 @@
 def getCardNumber():
-    cardnum = int(input("Card Number: "))
-    
+    # cardnum = int(input("Card Number: "))
+
+    # cardnum =  4003600000000014
+
+    cardnum = 5332810078507555
+
     # Puts the card number into an array
     cardnum = [int(x) for x in str(cardnum)]
 
-    # Splitting the numbers up (1, 3, etc) and (2, 4, etc)
-    cardnumarray = [{cardnum[0]}, {cardnum[2]}, {cardnum[4]}, {cardnum[6]}, {cardnum[8]}, {cardnum[10]}, {cardnum[12]}, {cardnum[14]}]
-    cardmultipliedarray = [{int(cardnum[1])*2}, {int(cardnum[3])*2}, {int(cardnum[5])*2}, {int(cardnum[7])*2}, {int(cardnum[9])*2}, {int(cardnum[11])*2}, {int(cardnum[13])*2}, {int(cardnum[15])*2}]
+
+    if len(cardnum) == 16:
 
 
-    print(cardnumarray)
-    print(cardmultipliedarray)
-    carda = 0
-    cardb = 0
-    cardc = 0
-    # Adds {cardnumarray} and {cardmultipliedarray}
-    for i in range(8):
-        """
-        Converts each number in the arrays to strings,
-        allowing for .replace() to remove the {},
-        then converted to integers to add to carda,
-        aswell as cardb, then adding carda and cardb together.
-        """
-        carda += int(str(cardnumarray[i]).replace('{','').replace('}',''))
-        cardb += int(str(cardmultipliedarray[i]).replace('{','').replace('}',''))
-        print(f"A - Iteration {i}: {carda}")
-        print(f"B - Iteration {i}: {cardb}")
-        
-    cardc = carda + cardb
-    print(cardc)
-    # Checking if the end digit of cardc is a zero
-    cardc = [int(x) for x in str(cardc)]; 
-    if cardc[1] != 0:
-        print("Invalid")
-    
-    
+        # Splitting the numbers up (1, 3, etc) and (2, 4, etc)
+        cardnumarray = [{cardnum[1]}, {cardnum[3]}, {cardnum[5]}, {cardnum[7]}, {cardnum[9]}, {cardnum[11]}, {cardnum[13]}, {cardnum[15]}]
+        cardmultipliedarray = [{int(cardnum[0])*2}, {int(cardnum[2]*2)}, {int(cardnum[4])*2}, {int(cardnum[6])*2}, {int(cardnum[8])*2}, {int(cardnum[10])*2}, {int(cardnum[12])*2}, {int(cardnum[14])*2}]
+
+        # Getting the individual digits from cardmultipliedarray
+        cardmultiplieddigits = []
+        for i in range(8):
+            cardmultiplieddigits += str(cardmultipliedarray[i]).replace('{', '').replace('}','')
+
+        cardmultiplied = 0
+        for i in range(9):
+            cardmultiplied += int(str(cardmultiplieddigits[i]).replace('{','').replace('}',''))
+
+        # Getting the numbers from cardnumarray & adding cardmultiplied with cardnum
+        cardnumadded = 0
+        for i in range(8):
+            cardnumadded += int(str(cardnumarray[i]).replace('{','').replace('}',''))
+        cardnumadded = cardnumadded + cardmultiplied
+
+        # Checking if the second digit of cardnumadded is a 0.
+        if [int(x) for x in str(cardnumadded)][1] != 0 or len(str(cardnumadded)) != 2:
+            print("INVALID.")
+
+            return False
+
+        # Checking whether the card is a Visa, or MasterCard
+        if cardnum[0] == 4:
+            print("VISA")
+        elif cardnum[0] == 5 and cardnum[1] == 1 or 2 or 3 or 4 or 5:
+            print("MASTERCARD")
+    if len(cardnum) == 13:
+        cardnumarray = [{cardnum[1]}, {cardnum[3]}, {cardnum[5]}, {cardnum[7]}, {cardnum[9]}, {cardnum[11]}, {cardnum[13]}]
+        cardmultipliedarray = [{int(cardnum[0])*2}, {int(cardnum[2])*2}, {int(cardnum[4])*2}, {int(cardnum[6])*2}, {int(cardnum[8])*2}, {int(cardnum[10])*2}, {int(cardnum[12])*2}]
+
+        # Getting the individual digits from cardmultipliedarray
+        cardmultiplieddigits = []
+        for i in range(8):
+            cardmultiplieddigits += str(cardmultipliedarray[i]).replace('{','').replace('}','')
+
+        cardmultiplied = 0
+        for i in range(9):
+            cardmultiplied += int(str(cardmultiplieddigits[i]).replace('{','').replace('}',''))
+
+        # Getting the numbers from cardnumarray & adding cardmultipled with cardnum
+        cardnumadded = 0
+        for i in range(8):
+            cardnumadded += int(str(cardnumarray[i]).replace('{','').replace('}',''))
+        cardnumadded = cardnum + cardmultiplied
+
+        # Checking if the second digit of cardnumadded is a 0
+        if [int(x) for x in str(cardnumadded)][0] != 0 or len(str(cardnumadded)) != 2:
+            print("INVALID.")
+
+            return False
+
+        if cardarray[0] == 4:
+            print("VISA")
 getCardNumber()
